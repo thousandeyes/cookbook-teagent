@@ -8,6 +8,8 @@ LOG_PATH="log-path=<%= @real_log_path %>"
 BIND_ADDR="bind-addr="
 PROXY_HOST="proxy-host=<%= @real_proxy_host %>"
 PROXY_PORT="proxy-port=<%= @real_proxy_port %>"
+PROXY_USER="proxy-user=<%= @real_proxy_user %>"
+PROXY_PASS="proxy-pass=<%= @real_proxy_pass %>"
 
 # default ip version is v4
 IP_VERSION="<%= @real_ip_version %>"
@@ -34,6 +36,14 @@ sed -i ${CFG_FILE} -e "s/$CUR_PROXY_HOST/$PROXY_HOST/g"
 # sed proxy-port
 CUR_PROXY_PORT=$(cat ${CFG_FILE}|grep 'proxy-port')
 sed -i ${CFG_FILE} -e "s/$CUR_PROXY_PORT/$PROXY_PORT/g"
+
+# sed proxy-user
+CUR_PROXY_USER=$(cat ${CFG_FILE}|grep 'proxy-user')
+sed -i ${CFG_FILE} -e "s/$CUR_PROXY_USER/$PROXY_USER/g"
+
+# sed proxy-pass
+CUR_PROXY_PASS=$(cat ${CFG_FILE}|grep 'proxy-pass')
+sed -i ${CFG_FILE} -e "s/$CUR_PROXY_PASS/$PROXY_PASS/g"
 
 # check the ip version and set the ip to the default route's ip on that version
 if [ "$IP_VERSION" == "ipv6" ]; then
