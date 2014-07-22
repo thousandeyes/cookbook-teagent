@@ -10,5 +10,8 @@ default['teagent']['account_token'] = '<account-token>'
 default['teagent']['log_path'] = '/var/log'
 default['teagent']['proxy_host'] = ''
 default['teagent']['proxy_port'] = '0'
+default['teagent']['proxy_user'] = ''
+default['teagent']['proxy_pass'] = ''
 default['teagent']['ip_version'] = 'ipv4'
-
+default['teagent']['agent_utils'] = false
+default['teagent']['set_repo'] = true

@@ -5,10 +5,16 @@
 # Copyright 2013, ThousandEyes, Inc.
 #
 
-include_recipe 'teagent::dependency'
+if node['teagent']['set_repo']
+    include_recipe 'teagent::dependency'
+end
 
 package 'te-agent' do
     action :install
+end
+
+if node['teagent']['agent_utils']
+    package 'te-agent-utils'
 end
 
 if node['teagent']['browserbot']
@@ -33,6 +39,8 @@ template '/var/lib/te-agent/config_teagent.sh' do
         :real_log_path => node['teagent']['log_path'],
         :real_proxy_host => node['teagent']['proxy_host'],
         :real_proxy_port => node['teagent']['proxy_port'],
+        :real_proxy_user => node['teagent']['proxy_user'],
+        :real_proxy_pass => node['teagent']['proxy_pass'],
         :real_ip_version => node['teagent']['ip_version'],
     })
     action :create_if_missing
