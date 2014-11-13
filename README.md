@@ -1,6 +1,6 @@
 teagent Cookbook
 =========================
-This cookbook installs and configures the ThousandEyes private agent.
+This cookbook installs and configures the ThousandEyes Enterprise Agent.
 
 Platform
 --------
@@ -129,7 +129,7 @@ Don't forget to set the attributes based on your use case.
  }
  ```
 
- * Set the ThousandEyes private agent to run with an IPv6 address
+ * Set the ThousandEyes Enterprise Agent to run with an IPv6 address
  ```
  {
      "teagent": {
@@ -140,8 +140,8 @@ Don't forget to set the attributes based on your use case.
  }
  ```
 
-Alternatively Include the teagent recipe to install the ThousandEyes private 
-agent. The only recipe you need to include is the default one.
+Alternatively Include the teagent recipe to install the ThousandEyes Enterprise 
+Agent. The only recipe you need to include is the default one.
 
 * `include_recipe 'teagent'`
 
