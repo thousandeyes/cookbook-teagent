@@ -45,10 +45,6 @@ sed -i ${CFG_FILE} -e "s/$CUR_PROXY_USER/$PROXY_USER/g"
 CUR_PROXY_PASS=$(cat ${CFG_FILE}|grep 'proxy-pass')
 sed -i ${CFG_FILE} -e "s/$CUR_PROXY_PASS/$PROXY_PASS/g"
 
-# check the ip version and set the ip to the default route's ip on that version
-if [ "$IP_VERSION" == "ipv6" ]; then
-    IP_DELIBITER="\."
-fi
 IPS=($(ip addr show scope global | awk '/inet/{print $2}' | grep -v ${IP_DELIMITER} | sed 's/\/[0-9]\+//'))
 IP=""
 
