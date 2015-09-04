@@ -58,7 +58,7 @@ if [ "${#IPS[@]}" == "1" ]; then
 else
     if [ "$IP_VERSION" == "ipv4" ]; then
         if [ -n "$INTERFACE" ]; then
-	        # get the first ip if multiple v4 are present
+	        # at this point only one ipv4 should be in the array
 	        IP="${IPS[0]}"
         else
 	        # get the ip with the default route
