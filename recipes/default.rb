@@ -42,6 +42,7 @@ template '/var/lib/te-agent/config_teagent.sh' do
         :real_proxy_user => node['teagent']['proxy_user'],
         :real_proxy_pass => node['teagent']['proxy_pass'],
         :real_ip_version => node['teagent']['ip_version'],
+        :real_interface  => node['teagent']['interface'],
     })
     action :create_if_missing
     notifies :run, "execute[config_teagent.sh]", :immediately
