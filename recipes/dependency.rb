@@ -17,13 +17,13 @@ when 'debian'
     end
 when 'ubuntu'
     case node[:platform_version]
-    when '10.04', '12.04', '14.04'
+    when '14.04' , '16.04'
         package 'lsb-release' do
             action :install
         end
         include_recipe 'teagent::repository'
     else
-        Chef::Application.fatal!('Only Ubuntu 10.4 (lucid), 12.04 (precise) and 14.04(trusty) are supported. Please contact support.')
+        Chef::Application.fatal!('Only Ubuntu 14.04(trusty) and 16.04 (xenial) are supported. Please contact support.')
     end
 when 'rhel','redhat','centos'
     if node[:platform_version].to_f >= 6.3
@@ -34,4 +34,3 @@ when 'rhel','redhat','centos'
 else
     Chef::Application.fatal!("#{node['platform']} isn't supported.")
 end
-

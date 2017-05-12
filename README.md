@@ -5,7 +5,7 @@ This cookbook installs and configures the ThousandEyes Enterprise Agent.
 Platform
 --------
 - Debian 6 (squeeze) 
-- Ubuntu 10.04 (lucid) and 12.04 (precise)
+- Ubuntu 14.04(trusty) and 16.04 (xenial)
 - CentOS 6.3+
 - Red Hat 6.3+
 
