@@ -30,6 +30,12 @@ Attributes
     <td><tt>false</tt></td>
   </tr>
   <tr>
+    <td><tt>['teagent']['agent_utils']</tt></td>
+    <td>Boolean</td>
+    <td>Install the ThousandEyes Agent Utilities</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
     <td><tt>['teagent']['international_langs']</tt></td>
     <td>Boolean</td>
     <td>install the international language support package</td>
@@ -60,10 +66,28 @@ Attributes
     <td><tt>'0'</tt></td>
   </tr>
   <tr>
+    <td><tt>['teagent']['proxy_user']</tt></td>
+    <td>String</td>
+    <td>Proxy user</td>
+    <td><tt>''</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['teagent']['proxy_pass']</tt></td>
+    <td>String</td>
+    <td>Proxy pass</td>
+    <td><tt>''</tt></td>
+  </tr>
+  <tr>
     <td><tt>['teagent']['ip_version']</tt></td>
     <td>String</td>
     <td>Ip version for the agent to run with ('ipv4' or 'ipv6')</td>
     <td><tt>'ipv4'</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['teagent']['set_repo']</tt></td>
+    <td>Boolean</td>
+    <td>Check dependencies and install the repo</td>
+    <td><tt>true</tt></td>
   </tr>
 </table>
 
@@ -92,6 +116,18 @@ Don't forget to set the attributes based on your use case.
      },
      "run_list": ["recipe[teagent]" ]
  }  
+ ```
+
+ * Enable browserbot and install the ThousandEyes Agent Utilities
+ ```
+ {
+     "teagent": {
+         "browserbot": true,
+         "agent_utils": true,
+         "account_token": "your_account_token_goes_here",
+     },
+     "run_list": ["recipe[teagent]" ]
+ }
  ```
 
  * Enable browserbot and install the international language packages
@@ -129,12 +165,37 @@ Don't forget to set the attributes based on your use case.
  }
  ```
 
+ * Set the proxy (http proxy, auth)
+ ```
+ {
+     "teagent": {
+         "account_token": "your_account_token_goes_here",
+         "proxy_host": "proxy.example.com",
+         "proxy_host": "proxy.example.com",
+         "proxy_user": "username",
+         "proxy_pass": "password",
+     },
+     "run_list": ["recipe[teagent]" ]
+ }
+ ```
+
  * Set the ThousandEyes Enterprise Agent to run with an IPv6 address
  ```
  {
      "teagent": {
          "account_token": "your_account_token_goes_here",
          "ip_version": "ipv6",
+     },
+     "run_list": ["recipe[teagent]" ]
+ }
+ ```
+
+ * Check dependencies and install the repo
+ ```
+ {
+     "teagent": {
+         "set_repo": true,
+         "account_token": "your_account_token_goes_here",
      },
      "run_list": ["recipe[teagent]" ]
  }
