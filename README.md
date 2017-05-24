@@ -154,10 +154,6 @@ Steps to run the chef Enterprise Agent:
      cookbook_path [ 'path_to_cookbook',
                     ] ```
 5. One way of executing the cookbook is using chef solo by issuing this command ```chef-solo -j path_to_file.json -c path_to_solo.rb ```.
-6. Agents will start running and should appear in the ThousandEyes Enterprise Agent list.
-7. Create custom tests with the agents using the ThousandEyes App.
-
-
 
 
 License and Authors
