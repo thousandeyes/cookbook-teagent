@@ -6,15 +6,7 @@
 #
 
 case node['platform_family']
-when 'debian'
-    repo_path = "/etc/apt/sources.list.d/thousandeyes.list"
-    repo_source = "thousandeyes.list.erb"
-    repo_variables = {:lsbdistcodename => node['lsb']['codename']}
-    pub_key = "thousandeyes-apt-key.pub"
-    pub_key_path = "/etc/apt/trusted.gpg.d"
-    key_add_import = "add-apt-key"
-    key_add_import_cmd = "apt-key add #{pub_key_path}/#{pub_key}"
-    repo_postinst_cmd = "apt-get update"
+
 when 'rhel','fedora'
     if platform?('rhel','redhat')
         repo_os = 'RHEL'
@@ -72,4 +64,3 @@ execute 'repo-postinst' do
     command "#{repo_postinst_cmd}"
     action :nothing
 end
-
