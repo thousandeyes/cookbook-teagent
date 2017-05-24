@@ -21,12 +21,7 @@ service 'te-agent' do
             provider Chef::Provider::Service::Upstart
             supports [:restart, :status]
         end
-
-
-    when 'debian'
-        pattern 'te-agent'
-        supports [:restart]
-    end
+        
     #supports [:restart, :status]
     action [:start, :enable]
 end

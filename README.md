@@ -4,10 +4,9 @@ This cookbook installs and configures the ThousandEyes Enterprise Agent.
 
 Platform
 --------
-- Debian 6 (squeeze) 
 - Ubuntu 14.04(trusty) and 16.04 (xenial)
-- CentOS 6.3+
-- Red Hat 6.3+
+- CentOS 6.3
+- Red Hat 6.3
 
 Requirements
 ------------
@@ -77,9 +76,9 @@ Don't forget to set the attributes based on your use case.
  ```
  {
      "teagent": {
-         "account_token": "your_account_token_goes_here",
+         "account_token": "your_account_token_goes_here"
      },
-     "run_list": ["recipe[teagent]" ] 
+     "run_list": ["recipe[teagent]" ]
  }
  ```
 
@@ -88,7 +87,7 @@ Don't forget to set the attributes based on your use case.
  {
      "teagent": {
          "browserbot": true,
-         "account_token": "your_account_token_goes_here",
+         "account_token": "your_account_token_goes_here"
      },
      "run_list": ["recipe[teagent]" ]
  }  
@@ -100,7 +99,7 @@ Don't forget to set the attributes based on your use case.
      "teagent": {
          "browserbot": true,
          "international_langs": true,
-         "account_token": "your_account_token_goes_here",
+         "account_token": "your_account_token_goes_here"
      },
      "run_list": ["recipe[teagent]" ]
  }
@@ -111,7 +110,7 @@ Don't forget to set the attributes based on your use case.
  {
      "teagent": {
          "account_token": "your_account_token_goes_here",
-         "log_path": "/var/log",
+         "log_path": "/var/log"
      },
      "run_list": ["recipe[teagent]" ]
  }
@@ -123,7 +122,7 @@ Don't forget to set the attributes based on your use case.
      "teagent": {
          "account_token": "your_account_token_goes_here",
          "proxy_host": "proxy.example.com",
-         "proxy_port": "8080",
+         "proxy_port": "8080"
      },
      "run_list": ["recipe[teagent]" ]
  }
@@ -134,16 +133,28 @@ Don't forget to set the attributes based on your use case.
  {
      "teagent": {
          "account_token": "your_account_token_goes_here",
-         "ip_version": "ipv6",
+         "ip_version": "ipv6"
      },
      "run_list": ["recipe[teagent]" ]
  }
  ```
 
-Alternatively Include the teagent recipe to install the ThousandEyes Enterprise 
+Alternatively Include the teagent recipe to install the ThousandEyes Enterprise
 Agent. The only recipe you need to include is the default one.
 
 * `include_recipe 'teagent'`
+
+### Example
+Steps to run the chef Enterprise Agent:
+1. Clone the repository.
+2. Rename the folder to **teagent**.
+3. Create a json file with a valid token as explained in the *Usage* section.
+4. **Optional:** Create a configuration file *solo.rb* with the cookbook path, like this:
+    ```
+     cookbook_path [ 'path_to_cookbook',
+                    ] ```
+5. One way of executing the cookbook is using chef solo by issuing this command ```chef-solo -j path_to_file.json -c path_to_solo.rb ```.
+6. Agents will start running and will show up in the ThousandEyes Enterprise Agent list.
 
 License and Authors
 -------------------
