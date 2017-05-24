@@ -21,7 +21,8 @@ service 'te-agent' do
             provider Chef::Provider::Service::Upstart
             supports [:restart, :status]
         end
-        
+    end
+       
     #supports [:restart, :status]
     action [:start, :enable]
 end
