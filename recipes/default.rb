@@ -53,4 +53,13 @@ execute 'config_teagent.sh' do
     action :nothing
 end
 
+template 'te-agent-service' do
+  path '/etc/systemd/system/te-agent.service'
+  source 'systemd.service.erb'
+  action :create
+  mode '0644'
+  owner 'root'
+  group 'root'
+end
+
 include_recipe 'teagent::service'

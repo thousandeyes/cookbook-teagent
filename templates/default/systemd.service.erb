@@ -1,0 +1,14 @@
+[Unit]
+Description=ThousandEyes Agent
+After=syslog.target network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/te-agent -C /etc/te-agent.cfg
+KillMode=process
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=5min
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target
