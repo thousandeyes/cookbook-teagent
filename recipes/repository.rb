@@ -34,8 +34,12 @@ when 'rhel','fedora'
     else
         repo_arch = node['kernel']['machine']
     end
+
+    platform_version = node['platform_version']
+
     repo_variables = { :repo_os => repo_os,
                        :architecture => repo_arch,
+                       :platform_version => platform_version,
     }
     pub_key = "RPM-GPG-KEY-thousandeyes"
     pub_key_path = "/etc/pki/rpm-gpg"

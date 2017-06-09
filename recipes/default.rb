@@ -53,14 +53,24 @@ execute 'config_teagent.sh' do
     action :nothing
 end
 
-template 'te-agent-service' do
-  path '/etc/systemd/system/te-agent.service'
-  source 'systemd.service.erb'
-  action :create
-  mode '0644'
-  owner 'root'
-  group 'root'
-  only_if { platform_family?('rhel') && node['platform_version'].to_f >= 7.0 }
-end
+#template 'te-agent-systemd-service' do
+#  path '/etc/systemd/system/te-agent.service'
+#  source 'systemd.service.erb'
+#  action :create
+#  mode '0644'
+# owner 'root'
+#  group 'root'
+#  only_if { platform_family?('rhel') && node['platform_version'].to_f >= 7.0 }
+#end
+
+#template 'te-agent-upstart-service' do
+#  path '/etc/init/te-agent.conf'
+#  source 'upstart.service.erb'
+#  action :create
+#  mode '0644'
+#  owner 'root'
+#  group 'root'
+#  only_if { platform_family?('rhel') && node['platform_version'].to_f < 7.0 }
+#end
 
 include_recipe 'teagent::service'

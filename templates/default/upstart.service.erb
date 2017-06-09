@@ -1,0 +1,29 @@
+# ThousandEyes' agent upstart script
+description "ThousandEyes' agent upstart script"
+version "1.0"
+author "ThousandEyes <builduser@thousandeyes.com>"
+
+stop on runlevel [S016]
+start on (net-device-up IFACE!=lo)
+
+env TEAGENT=/usr/local/bin/te-agent
+env TEAGENT_CONF=/etc/te-agent.cfg
+
+respawn
+# Do not respawn more than 10 times in 5 minutes.
+respawn limit 10 300
+normal exit 0
+script
+    # Turns off shell exiting when an error occurs. This is necessary to execute
+    # whatever comes after the agent when it crashes.
+    set +e
+    $TEAGENT -C $TEAGENT_CONF
+    STATUS=$?
+    # Wait ten seconds after the agent exits. This is only executed when the agent
+    # exits via a non-normal exit. When stop or restart are called, the whole
+    # script is killed and this line is not executed.
+    if [ $STATUS -ne 0 ]; then
+       sleep 10
+    fi
+    exit $STATUS
+end script

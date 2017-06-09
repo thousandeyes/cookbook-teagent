@@ -1,12 +1,11 @@
 [thousandeyes]
 name=ThousandEyes
-baseurl=http://yum.thousandeyes.com/<%= @repo_os %>/6/<%= @architecture %>
+baseurl=http://yum.thousandeyes.com/<%= @repo_os %>/<%= @platform_version %>/<%= @architecture %>
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-thousandeyes
 gpgcheck=1
 
 [thousandeyes-noarch]
 name=ThousandEyes (noarch)
-baseurl=http://yum.thousandeyes.com/<%= @repo_os %>/6/noarch
+baseurl=http://yum.thousandeyes.com/<%= @repo_os %>/<%= @platform_version %>/noarch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-thousandeyes
 gpgcheck=1
-
