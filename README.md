@@ -150,9 +150,10 @@ Steps to run the chef Enterprise Agent:
 2. Rename the folder to **teagent**.
 3. Create a json file with a valid token as explained in the *Usage* section.
 4. **Optional:** Create a configuration file *solo.rb* with the cookbook path, like this:
-    ```
-     cookbook_path [ 'path_to_cookbook',
-                    ] ```
+```
+ cookbook_path [ 'path_to_cookbook',
+                ]
+```
 5. One way of executing the cookbook is using chef solo by issuing this command ```chef-solo -j path_to_file.json -c path_to_solo.rb ```.
 6. Agents will start running and will show up in the ThousandEyes Enterprise Agent list.
 
