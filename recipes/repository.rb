@@ -25,6 +25,11 @@ when 'rhel','fedora'
     else
         Chef::Application.fatal!("#{node['platform']} isn't supported.")
     end
+    if node['platform_version'].to_f < 7
+        platform_version = '6'
+    else
+        platform_version = '7'
+    end
 
     repo_path = "/etc/yum.repos.d/thousandeyes.repo"
     repo_source = "thousandeyes.repo.erb"
@@ -34,8 +39,6 @@ when 'rhel','fedora'
     else
         repo_arch = node['kernel']['machine']
     end
-
-    platform_version = node['platform_version']
 
     repo_variables = { :repo_os => repo_os,
                        :architecture => repo_arch,
@@ -55,7 +58,7 @@ template "#{repo_path}" do
     mode '0644'
     owner 'root'
     group 'root'
-    action :create_if_missing
+    action :create
     variables(repo_variables)
 end
 
@@ -64,7 +67,7 @@ cookbook_file "#{pub_key}" do
     mode '0644'
     owner 'root'
     group 'root'
-    action :create_if_missing
+    action :create
     notifies :run, "execute[#{key_add_import}]", :immediately
 end
 

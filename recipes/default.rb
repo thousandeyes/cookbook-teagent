@@ -44,7 +44,7 @@ template '/var/lib/te-agent/config_teagent.sh' do
         :real_ip_version => node['teagent']['ip_version'],
         :real_interface  => node['teagent']['interface'],
     })
-    action :create_if_missing
+    action :create
     notifies :run, "execute[config_teagent.sh]", :immediately
 end
 
@@ -52,25 +52,5 @@ execute 'config_teagent.sh' do
     command '/var/lib/te-agent/config_teagent.sh'
     action :nothing
 end
-
-#template 'te-agent-systemd-service' do
-#  path '/etc/systemd/system/te-agent.service'
-#  source 'systemd.service.erb'
-#  action :create
-#  mode '0644'
-# owner 'root'
-#  group 'root'
-#  only_if { platform_family?('rhel') && node['platform_version'].to_f >= 7.0 }
-#end
-
-#template 'te-agent-upstart-service' do
-#  path '/etc/init/te-agent.conf'
-#  source 'upstart.service.erb'
-#  action :create
-#  mode '0644'
-#  owner 'root'
-#  group 'root'
-#  only_if { platform_family?('rhel') && node['platform_version'].to_f < 7.0 }
-#end
 
 include_recipe 'teagent::service'

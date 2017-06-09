@@ -12,19 +12,17 @@ service 'te-agent' do
             if node['platform_version'].to_f < 7.0
                 provider Chef::Provider::Service::Upstart
                 supports [:restart, :status]
-                #subscribes :restart, 'template[te-agent-upstart-service]', :immediately
             else
                 provider Chef::Provider::Service::Systemd
                 supports [:restart, :status]
-                #subscribes :restart, 'template[te-agent-systemd-service]', :immediately
             end
 
         when 'ubuntu'
-            if node['platform_version'] == '16.04'
-                provider Chef::Provider::Service::Systemd
+            if node['platform_version'].to_f < 15.04
+                provider Chef::Provider::Service::Upstart
                 supports [:restart, :status]
             else
-                provider Chef::Provider::Service::Upstart
+                provider Chef::Provider::Service::Systemd
                 supports [:restart, :status]
             end
     end
