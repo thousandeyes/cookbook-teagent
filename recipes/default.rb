@@ -60,6 +60,7 @@ template 'te-agent-service' do
   mode '0644'
   owner 'root'
   group 'root'
+  only_if { platform_family?('rhel') && node['platform_version'].to_f >= 7.0 }
 end
 
 include_recipe 'teagent::service'
