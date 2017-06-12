@@ -44,7 +44,7 @@ template '/var/lib/te-agent/config_teagent.sh' do
         :real_ip_version => node['teagent']['ip_version'],
         :real_interface  => node['teagent']['interface'],
     })
-    action :create_if_missing
+    action :create
     notifies :run, "execute[config_teagent.sh]", :immediately
 end
 

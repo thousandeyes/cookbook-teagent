@@ -1,4 +1,4 @@
-#
+
 ### Cookbook Name:: teagent
 ### Recipe:: service
 ##
@@ -8,21 +8,23 @@
 
 service 'te-agent' do
     case node['platform']
-    when 'redhat','centos'
-        provider Chef::Provider::Service::Upstart
-        supports [:restart, :status]
+        when 'redhat','centos'
+            if node['platform_version'].to_f < 7.0
+                provider Chef::Provider::Service::Upstart
+                supports [:restart, :status]
+            else
+                provider Chef::Provider::Service::Systemd
+                supports [:restart, :status]
+            end
 
-    when 'ubuntu'
-        case node['platform_version']
-        when '16.04'
-            provider Chef::Provider::Service::Systemd
-            supports [:restart, :status]
-        else
-            provider Chef::Provider::Service::Upstart
-            supports [:restart, :status]
-        end
+        when 'ubuntu'
+            if node['platform_version'].to_f < 15.04
+                provider Chef::Provider::Service::Upstart
+                supports [:restart, :status]
+            else
+                provider Chef::Provider::Service::Systemd
+                supports [:restart, :status]
+            end
     end
-       
-    #supports [:restart, :status]
     action [:start, :enable]
 end
