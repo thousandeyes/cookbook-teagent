@@ -53,8 +53,8 @@ else
     Chef::Log.warn("#{node['platform']} isn't supported.")
 end
 
-template "#{repo_path}" do
-    source "#{repo_source}"
+template repo_path do
+    source repo_source
     mode '0644'
     owner 'root'
     group 'root'
@@ -62,7 +62,7 @@ template "#{repo_path}" do
     variables(repo_variables)
 end
 
-cookbook_file "#{pub_key}" do
+cookbook_file pub_key do
     path "#{pub_key_path}/#{pub_key}"
     mode '0644'
     owner 'root'
@@ -71,13 +71,13 @@ cookbook_file "#{pub_key}" do
     notifies :run, "execute[#{key_add_import}]", :immediately
 end
 
-execute "#{key_add_import}" do
-    command "#{key_add_import_cmd}"
+execute key_add_import do
+    command key_add_import_cmd
     action :nothing
     notifies :run, "execute[repo-postinst]", :immediately
 end
 
 execute 'repo-postinst' do
-    command "#{repo_postinst_cmd}"
+    command repo_postinst_cmd
     action :nothing
 end
