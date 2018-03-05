@@ -11,6 +11,8 @@ default['teagent']['ip_version'] = 'ipv4'
 default['teagent']['interface'] = ''
 default['teagent']['agent_utils'] = false
 default['teagent']['set_repo'] = true
+# Set this attribute true if you want to use the template config instead of the shell script config
+default['teagent']['chef_template_config'] = false
 
 # Configuration settings
 default['teagent']['config']['account_token'] = '<account-token>'
