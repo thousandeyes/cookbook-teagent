@@ -7,13 +7,28 @@
 
 default['teagent']['browserbot'] = false
 default['teagent']['international_langs'] = false
-default['teagent']['account_token'] = '<account-token>'
-default['teagent']['log_path'] = '/var/log'
-default['teagent']['proxy_host'] = ''
-default['teagent']['proxy_port'] = '0'
-default['teagent']['proxy_user'] = ''
-default['teagent']['proxy_pass'] = ''
 default['teagent']['ip_version'] = 'ipv4'
 default['teagent']['interface'] = ''
 default['teagent']['agent_utils'] = false
 default['teagent']['set_repo'] = true
+
+# Configuration settings
+default['teagent']['config']['account_token'] = '<account-token>'
+default['teagent']['config']['log_file_size'] = 10
+default['teagent']['config']['log_level'] = 'DEBUG'
+default['teagent']['config']['log_path'] = '/var/log'
+default['teagent']['config']['num_log_files'] = 13
+default['teagent']['config']['proxy_type'] = 'DIRECT'
+default['teagent']['config']['proxy_location'] = ''
+default['teagent']['config']['proxy_user'] = ''
+default['teagent']['config']['proxy_pass'] = ''
+default['teagent']['config']['crash_reports'] = 1
+# Set bind_addr attribute if you need to set a custom IP for the enterprise agent target
+if node['teagent']['ip_version'] == 'ipv6' do
+  default['teagent']['config']['bind_addr'] = node['network']['interfaces']['ip6address']
+else do
+  default['teagent']['config']['bind_addr'] = node['network']['interfaces']['ipaddress']
+end
+# Obsolete configuration settings still used by config_teagent.sh
+default['teagent']['config']['proxy_host'] = ''
+default['teagent']['config']['proxy_port'] = ''
