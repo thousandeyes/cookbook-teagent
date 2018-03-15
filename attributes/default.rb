@@ -25,12 +25,7 @@ default['teagent']['config']['proxy_location'] = ''
 default['teagent']['config']['proxy_user'] = ''
 default['teagent']['config']['proxy_pass'] = ''
 default['teagent']['config']['crash_reports'] = 1
-# Set bind_addr attribute if you need to set a custom IP for the enterprise agent target
-if node['teagent']['ip_version'] == 'ipv6' do
-  default['teagent']['config']['bind_addr'] = node['network']['interfaces']['ip6address']
-else do
-  default['teagent']['config']['bind_addr'] = node['network']['interfaces']['ipaddress']
-end
+
 # Obsolete configuration settings still used by config_teagent.sh
 default['teagent']['config']['proxy_host'] = ''
 default['teagent']['config']['proxy_port'] = ''
