@@ -21,19 +21,6 @@ if node['teagent']['chef_template_config']
     mode '0644'
     owner 'root'
     group 'root'
-    variables(
-      account_token: node['teagent']['config']['account_token'],
-      log_file_size: node['teagent']['config']['log_file_size'],
-      log_level: node['teagent']['config']['log_level'],
-      log_path: node['teagent']['config']['log_path'],
-      num_log_files: node['teagent']['config']['num_log_files'],
-      proxy_type: node['teagent']['config']['proxy_type'],
-      proxy_location: node['teagent']['config']['proxy_location'],
-      proxy_user: node['teagent']['config']['proxy_user'],
-      proxy_pass: node['teagent']['config']['proxy_pass'],
-      proxy_bypass_list: node['teagent']['config']['proxy_bypass_list'],
-      crash_reports: node['teagent']['config']['crash_reports']
-    )
   end
 # The config_teagent.sh has not been updated after proxy host and port were made obsolete.
 else
