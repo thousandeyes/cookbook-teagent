@@ -27,7 +27,6 @@ if node['teagent']['chef_template_config']
       log_level: node['teagent']['config']['log_level'],
       log_path: node['teagent']['config']['log_path'],
       num_log_files: node['teagent']['config']['num_log_files'],
-      bind_addr: node['teagent']['config']['bind_addr'],
       proxy_type: node['teagent']['config']['proxy_type'],
       proxy_location: node['teagent']['config']['proxy_location'],
       proxy_user: node['teagent']['config']['proxy_user'],
