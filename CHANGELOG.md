@@ -3,6 +3,11 @@ cookbook-teagent CHANGELOG
 
 This file is used to list changes made in each version of the cookbook-teagent cookbook.
 
+0.3.0
+-----
+- Possibility to use an erb template to generate te-agent.cfg file
+- Cookstyle fixes
+
 0.2.0
 -----
 - Added Ubuntu 16.04 Xenial support
