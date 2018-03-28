@@ -5,52 +5,21 @@
 # Copyright 2013, ThousandEyes, Inc.
 #
 
-if node['teagent']['set_repo']
-    include_recipe 'teagent::dependency'
-end
+include_recipe 'teagent::dependency' if node['teagent']['set_repo']
 
-package 'te-agent' do
-    action :install
-end
+package 'te-agent'
 
-if node['teagent']['agent_utils']
-    package 'te-agent-utils'
-end
+package 'te-agent-utils' if node['teagent']['agent_utils']
 
-if node['teagent']['browserbot']
-    package 'te-browserbot' do
-        action :install
-    end
-end
+package 'te-browserbot' if node['teagent']['browserbot']
 
-if node['teagent']['international_langs']
-    package 'te-intl-fonts' do
-        action :install
-    end
-end
+package 'te-intl-fonts' if node['teagent']['international_langs']
 
-template '/var/lib/te-agent/config_teagent.sh' do
-    source 'config_teagent.sh.erb'
-    mode '0755'
-    owner 'root'
-    group 'root'
-    variables({
-        :real_account_token => node['teagent']['account_token'],
-        :real_log_path => node['teagent']['log_path'],
-        :real_proxy_host => node['teagent']['proxy_host'],
-        :real_proxy_port => node['teagent']['proxy_port'],
-        :real_proxy_user => node['teagent']['proxy_user'],
-        :real_proxy_pass => node['teagent']['proxy_pass'],
-        :real_ip_version => node['teagent']['ip_version'],
-        :real_interface  => node['teagent']['interface'],
-    })
-    action :create
-    notifies :run, "execute[config_teagent.sh]", :immediately
-end
-
-execute 'config_teagent.sh' do
-    command '/var/lib/te-agent/config_teagent.sh'
-    action :nothing
+template 'etc/te-agent.cfg' do
+  source 'te-agent.cfg.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
 end
 
 include_recipe 'teagent::service'
