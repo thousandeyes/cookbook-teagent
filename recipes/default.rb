@@ -7,7 +7,9 @@
 
 include_recipe 'teagent::dependency' if node['teagent']['set_repo']
 
-package 'te-agent'
+package 'te-agent' do
+    version node['teagent']['version'] unless node['teagent']['is_canary'] 
+end
 
 package 'te-agent-utils' if node['teagent']['agent_utils']
 
