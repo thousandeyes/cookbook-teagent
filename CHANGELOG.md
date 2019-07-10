@@ -3,6 +3,11 @@ cookbook-teagent CHANGELOG
 
 This file is used to list changes made in each version of the cookbook-teagent cookbook.
 
+0.3.1
+-----
+- Set the default version to 1.66.1-1~xenial
+- Add an `is_canary` attribute that can override version to be empty
+
 0.3.0
 -----
 - Possibility to use an erb template to generate te-agent.cfg file
