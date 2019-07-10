@@ -5,6 +5,9 @@
 # Copyright © 2013 ThousandEyes, Inc.
 #
 
+default['teagent']['version'] = '1.66.1-1~xenial'
+default['teagent']['is_canary'] = false
+
 default['teagent']['browserbot'] = false
 default['teagent']['international_langs'] = false
 default['teagent']['ip_version'] = 'ipv4'
